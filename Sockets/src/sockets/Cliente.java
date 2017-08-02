@@ -23,15 +23,15 @@ public class Cliente {
             ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
 
-            if (socket.isConnected()) {
-                // Si es capaz de conectarse
-                while (true) {
-                    num = new Integer(JOptionPane.showInputDialog("Ingrese un numero entre 1 y 50"));
+            while (true) {
+                num = new Integer(JOptionPane.showInputDialog("Ingrese un numero entre 1 y 50"));
 
-                    salida.writeObject(num);
-                    String response = (String) entrada.readObject();
+                salida.writeObject(num);
+                String response = (String) entrada.readObject();
 
-                    JOptionPane.showMessageDialog(null, "SERVIDOR: " + response);
+                JOptionPane.showMessageDialog(null, "SERVIDOR: " + response);
+                if (response.contains("Correcto") || response.contains("Perdiste")) {
+                    break;
                 }
             }
 
