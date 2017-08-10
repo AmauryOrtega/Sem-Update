@@ -11,7 +11,7 @@ Repositorio para la asignatura Seminario de Actualización.
 - [ ] Apagar el servidor desde el cliente
 - [ ] Usar hilos en el servidor para no quedar esperando readObject()
 - [ ] Registre los computadores con su IP que se conectan. El cliente enciende su pc y enseguida se conecta al server
-- [ ] Si un nuevo computador se conecta en horas picos (medio dia en adelante)
+- [ ] Si un nuevo computador se conecta en horas picos (medio dia en adelante), debe apagarse enseguida
 - [ ] Es para mantener un registro de quien se conecta a que hora
 
 #### Clases utiles
