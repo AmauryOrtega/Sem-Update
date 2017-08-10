@@ -10,3 +10,6 @@ Repositorio para la asignatura Seminario de Actualización.
 - [ ] Tener UI en el cliente
 - [ ] Apagar el servidor desde el cliente
 - [ ] Usar hilos en el servidor para no quedar esperando readObject()
+
+#### Clases utiles
+Thread, Task, Runnable, Process, Time
