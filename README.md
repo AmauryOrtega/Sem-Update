@@ -15,9 +15,22 @@ Usando la actividad 1, hacer las siguientes actividades
 - [ ] Registre los computadores con su IP que se conectan. El cliente enciende su pc y enseguida se conecta al server
 - [ ] Si un nuevo computador se conecta en horas picos (medio dia en adelante), debe apagarse enseguida
 - [ ] Se debe mantener un registro de quien se conecta a que hora (BD)
+- [ ] El cliente cuando se conecta, envia una instancia de objeto PC. Hay que crear la clase PC en un projecto java library y asi tener un .jar en el servidor y en el cliente
 ### Video
 
+## RPC -> RMI
+## Web services y RESTful
+## SOAP
+## Push. Google firebase
+
 # Clases utiles
-Thread, Task, Runnable, Process, Time
-SocketChannel vs Socket en Java
-JPA Framework para trabajar base de datos de forma abstracta
+- Thread, Task, Runnable, Process, Time
+- SocketChannel vs Socket en Java
+- JPA Framework para trabajar base de datos de forma abstracta
+- Derby en netbeans para hacer BD
+- Libreria hyperic/sigar en github
+- Active record
+
+# Proyecto
+- **Articulo** Final de curso. Estudio comparativo RPC, RMI, SOCKET, MQTT
+- Informe tecnico del proyecto
