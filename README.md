@@ -30,6 +30,7 @@ Usando la actividad 1, hacer las siguientes actividades
 - Derby en netbeans para hacer BD
 - Libreria hyperic/sigar en github
 - Active record
+- WebRTC
 
 # Proyecto
 - **Articulo** Final de curso. Estudio comparativo RPC, RMI, SOCKET, MQTT

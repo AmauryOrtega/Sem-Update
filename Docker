@@ -1,0 +1,8 @@
+Change /etc/phpmyadmin/apache.conf
+
+	<Directory /usr/share/phpMyAdmin/>
+    	order allow,deny
+    	allow from all
+	</Directory>
+
+Use service apache2 restart
