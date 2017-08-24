@@ -19,6 +19,10 @@ Usando la actividad 1, hacer las siguientes actividades
 ### Video
 
 ## RPC -> RMI
+[Link 1](https://www.adictosaltrabajo.com/tutoriales/rmi-remote-registry/)
+[Link proyecto 1](http://omarghader.github.io/docker-tutorial-phpmyadmin-and-mysql-server/)
+[Link proyecto 2](https://blog.thenets.org/how-to-install-mysql-and-phpmyadmin-with-docker/)
+
 ## Web services y RESTful
 ## SOAP
 ## Push. Google firebase
