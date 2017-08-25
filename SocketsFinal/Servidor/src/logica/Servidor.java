@@ -32,4 +32,13 @@ public class Servidor {
             }
         }
     }
+    
+    public void detenerServidor(){
+        try {
+            servidor.close();
+        } catch (IOException ex) {
+            System.out.println("(LOG) [ERROR] No se pudo detener el servidor");
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

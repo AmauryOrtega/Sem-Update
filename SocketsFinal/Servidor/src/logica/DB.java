@@ -27,7 +27,7 @@ class DB {
             System.out.println("(LOG) [ERROR] La clase com.mysql.jdbc.Driver hace falta");
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            System.out.println("(LOG) [ERROR] Problema SQL raro");
+            System.out.println("(LOG) [ERROR] Revise la DB");
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
