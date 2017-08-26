@@ -1,4 +1,4 @@
-docker run -d -p 49160:22 -p 49161:80 -p 49162:3306 wnameless/mysql-phpmyadmin
+docker run -d -p 49160:22 -p 49161:80 -p 49162:3306 --name=server wnameless/mysql-phpmyadmin
 
 Change /etc/phpmyadmin/apache.conf
 
@@ -8,3 +8,6 @@ Change /etc/phpmyadmin/apache.conf
 	</Directory>
 
 Use service apache2 restart
+
+Change /etc/mysql/my.cnf
+mysql listen address from 127.0.0.1 to *

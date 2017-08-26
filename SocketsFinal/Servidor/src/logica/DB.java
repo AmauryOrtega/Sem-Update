@@ -7,18 +7,20 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class DB {
+// mysql -h 127.0.0.1 -P 3306 -u root --password=lxit
+
+public class DB {
 
     private Connection conexion;
     private String db_ip = "localhost";
     private String db_port = "3306";
     private String db_name = "registro";
-    private String user = "root";
+    private String user = "test";
     private String pass = "";
     private String table_registros = "registros";
     private String table_puertos = "puertos";
 
-    void conectar() {
+    public void conectar() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = (Connection) DriverManager.getConnection("jdbc:mysql://" + db_ip + ":" + db_port + "/" + db_name, user, pass);
@@ -32,7 +34,7 @@ class DB {
         }
     }
 
-    void insertar(String format, String hostAddress) {
+    public void insertar(String format, String hostAddress) {
         try {
             String Query = "INSERT INTO " + table_registros + " VALUES()";
             Statement st = (Statement) conexion.createStatement();
@@ -43,7 +45,7 @@ class DB {
         }
     }
 
-    void desconectar() {
+    public void desconectar() {
         try {
             conexion.close();
             System.out.println("(LOG) [OK] DB Cerrada");
@@ -62,9 +64,7 @@ class DB {
             resultSet = st.executeQuery(Query);
 
             while (resultSet.next()) {
-                System.out.println("Columna1: " + resultSet.getString("columna1") + " "
-                        + "Columna2: " + resultSet.getString("columna2") + " "
-                        + "Columna3: " + resultSet.getString("columna3"));
+                System.out.println("Columna1: " + resultSet.getString("columna1"));
             }
 
         } catch (SQLException ex) {

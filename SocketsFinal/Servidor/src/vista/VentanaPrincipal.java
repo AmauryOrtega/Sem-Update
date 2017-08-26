@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Color;
+import logica.DB;
 import logica.Servidor;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
@@ -77,14 +78,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         // Si la BD no esta funcionando, no dejar encender
         if (true) {
-            jLabel1.setForeground(Color.red);
+            jLabel1.setForeground(Color.green);
             instancia.iniciarServidor();
         }
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void botonDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDetenerActionPerformed
         // Detener todo
-        instancia.iniciarServidor();
+        instancia.detenerServidor();
+        jLabel1.setForeground(Color.red);
     }//GEN-LAST:event_botonDetenerActionPerformed
 
     public static void main(String args[]) {
@@ -117,6 +119,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 new VentanaPrincipal().setVisible(true);
             }
         });
+        DB db = new DB();
+        db.conectar();
+        db.consulta();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
