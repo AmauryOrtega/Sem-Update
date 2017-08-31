@@ -35,7 +35,7 @@ ToDo
 [Link proyecto 2](https://blog.thenets.org/how-to-install-mysql-and-phpmyadmin-with-docker/)
 
 ### 1.4 Proyecto final de corte
-Usando sockets se tendra un servidor recibiendo peticiones de clientes para ofrecer un contenedor con phpmyadmin y mysql en 2 puertos unicos por cliente.
+Usando sockets se tendra un servidor recibiendo peticiones de clientes para ofrecer un contenedor con phpmyadmin y mysql en 2 puertos unicos por cliente. [Codigo](Proyecto-1-Corte/)
 
 Cuando el usuario pide el contenedor
 ![Image of Yaktocat](Proyecto-1-Corte/SocketsFinal/Pidiendo-APP.png)
