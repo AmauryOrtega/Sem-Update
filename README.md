@@ -1,14 +1,15 @@
 # Sem-Update
 Repositorio para la asignatura Seminario de Actualización. 
 
-## Actividad 1 con Sockets
-Usando Socket y ServerSocket en java, un cliente intenta adivinar un numero aleatorio que esta almacenado en el servidor, tiene 10 intentos para adivinar el numero.
-[Codigo](https://github.com/AmauryOrtega/Sem-Update/tree/c177d2c9f96ecf7bd167d95d97e8a4e1cf8cd13a/Sockets/src/sockets)
-### Video
+## 1 Corte
+
+### 1.1 Sockets
+Usando Socket y ServerSocket en java, un cliente intenta adivinar un numero aleatorio que esta almacenado en el servidor, tiene 10 intentos para adivinar el numero. [Codigo](1-Corte/Sockets/src/sockets)
+
 [![Video](http://img.youtube.com/vi/HqRHc-UUyZc/0.jpg)](http://www.youtube.com/watch?v=HqRHc-UUyZc)
 
-## Actividad 2 con Sockets
-Usando la actividad 1, hacer las siguientes actividades
+### 1.2 Sockets con modificaciones
+Usando la actividad [1.1](#11-sockets), hacer las siguientes actividades
 - [ ] Tener UI en el cliente
 - [ ] Apagar el servidor desde el cliente
 - [ ] Usar hilos en el servidor para no quedar esperando readObject()
@@ -16,25 +17,39 @@ Usando la actividad 1, hacer las siguientes actividades
 - [ ] Si un nuevo computador se conecta en horas picos (medio dia en adelante), debe apagarse enseguida
 - [ ] Se debe mantener un registro de quien se conecta a que hora (BD)
 - [ ] El cliente cuando se conecta, envia una instancia de objeto PC. Hay que crear la clase PC en un projecto java library y asi tener un .jar en el servidor y en el cliente
-### Video
 
-## RPC -> RMI
+### 1.3 RPC -> RMI
+ToDo
 [Link 1](https://www.adictosaltrabajo.com/tutoriales/rmi-remote-registry/)
 [Link proyecto 1](http://omarghader.github.io/docker-tutorial-phpmyadmin-and-mysql-server/)
 [Link proyecto 2](https://blog.thenets.org/how-to-install-mysql-and-phpmyadmin-with-docker/)
+
+### 1.4 Proyecto final de corte
+Usando sockets se tendra un servidor recibiendo peticiones de clientes para ofrecer un contenedor con phpmyadmin y mysql en 2 puertos unicos por cliente.
+
+Cuando el usuario pide el contenedor
+
+![Image of Yaktocat](Proyecto-1-Corte/SocketsFinal/Pidiendo-APP.png)
+
+![Image of Yaktocat](Proyecto-1-Corte/SocketsFinal/Deteniendo-APP.png)
+
+To Do:
+ - [ ] Crear propia imagen en docker basada en wnameless/mysql-phpmyadmin
+ - [ ] Poner el comando de docker en el servidor
+ - [ ] Recrear el proyecto con RMI
 
 ## Web services y RESTful
 ## SOAP
 ## Push. Google firebase
 
 # Clases utiles
-- Thread, Task, Runnable, Process, Time
-- SocketChannel vs Socket en Java
-- JPA Framework para trabajar base de datos de forma abstracta
-- Derby en netbeans para hacer BD
-- Libreria hyperic/sigar en github
-- Active record
-- WebRTC
+ - Thread, Task, Runnable, Process, Time
+ - SocketChannel vs Socket en Java
+ - JPA Framework para trabajar base de datos de forma abstracta
+ - Derby en netbeans para hacer BD
+ - Libreria hyperic/sigar en github
+ - Active record
+ - WebRTC
 
 # Proyecto
 - **Articulo** Final de curso. Estudio comparativo RPC, RMI, SOCKET, MQTT
