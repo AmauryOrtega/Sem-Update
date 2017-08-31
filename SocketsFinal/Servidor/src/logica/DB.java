@@ -8,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 // mysql -h 127.0.0.1 -P 3306 -u root --password=lxit
-
 public class DB {
 
     private Connection conexion;
@@ -17,8 +16,6 @@ public class DB {
     private String db_name = "registro";
     private String user = "test";
     private String pass = "";
-    private String table_registros = "registros";
-    private String table_puertos = "puertos";
 
     public void conectar() {
         try {
@@ -34,15 +31,43 @@ public class DB {
         }
     }
 
-    public void insertar(String format, String hostAddress) {
+    public Pc insertar() {
+        Pc usuario = new Pc();
+        String Query;
+        Statement st;
+        java.sql.ResultSet resultSet;
         try {
-            String Query = "INSERT INTO " + table_registros + " VALUES()";
-            Statement st = (Statement) conexion.createStatement();
+            // Saca el ultimo valor de la BD para tener los puertos
+            Query = "SELECT * FROM `registros`ORDER BY idUsuario DESC LIMIT 1";
+            st = (Statement) conexion.createStatement();
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                usuario.setPuertoPHP(Integer.parseInt(resultSet.getString("puertoPHP")));
+                usuario.setPuertoSQL(Integer.parseInt(resultSet.getString("puertoSQL")));
+            }
+            
+            usuario.setPuertoPHP(usuario.getPuertoPHP()+1);
+            usuario.setPuertoSQL(usuario.getPuertoSQL()+1);
+            
+            // Inserta al cliente para dichos puertos
+            Query = "INSERT INTO `registros`(`puertoPHP`, `puertoSQL`) VALUES (" + usuario.getPuertoPHP() + "," + usuario.getPuertoSQL() + ")";
+            st = (Statement) conexion.createStatement();
             st.executeUpdate(Query);
+
+            // Saca el ultimo valor de la BD para tener el id del usuario
+            Query = "SELECT * FROM `registros`ORDER BY idUsuario DESC LIMIT 1";
+            st = (Statement) conexion.createStatement();
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                usuario.setId(Integer.parseInt(resultSet.getString("idUsuario")));
+            }
+
+            return usuario;
         } catch (SQLException ex) {
             System.out.println("(LOG) [ERROR] No se pudo insertar la informacion");
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     public void desconectar() {
@@ -55,22 +80,14 @@ public class DB {
         }
     }
 
-    public void consulta() {
+    void eliminar(Integer id) {
         try {
-            String Query = "SELECT * FROM " + table_registros;
+            String Query = "DELETE FROM `registros` WHERE idUsuario=" + id;
             Statement st = (Statement) conexion.createStatement();
-
-            java.sql.ResultSet resultSet;
-            resultSet = st.executeQuery(Query);
-
-            while (resultSet.next()) {
-                System.out.println("Columna1: " + resultSet.getString("columna1"));
-            }
-
+            st.executeUpdate(Query);
+            System.out.println("(LOG) [OK] DB Eliminando usuario " + id);
         } catch (SQLException ex) {
-            System.out.println("(LOG) [ERROR] DB No se leer");
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

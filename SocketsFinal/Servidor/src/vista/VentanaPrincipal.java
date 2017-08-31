@@ -7,6 +7,7 @@ import logica.Servidor;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     Servidor instancia = new Servidor();
+    Thread t;
 
     public VentanaPrincipal() {
         initComponents();
@@ -26,6 +27,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonDetener = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Servidor");
+        setLocation(new java.awt.Point(100, 100));
+        setResizable(false);
 
         botonIniciar.setText("Iniciar");
         botonIniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -34,6 +38,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Consolas", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Servidor");
 
         botonDetener.setText("Detener");
@@ -48,27 +54,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
                         .addComponent(botonIniciar)
-                        .addGap(73, 73, 73)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonDetener)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonIniciar)
-                    .addComponent(botonDetener))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonDetener)
+                    .addComponent(botonIniciar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,12 +83,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Si la BD no esta funcionando, no dejar encender
         if (true) {
             jLabel1.setForeground(Color.green);
-            instancia.iniciarServidor();
+            t = new Thread(new Runnable() {
+                public void run() {
+                    instancia.iniciarServidor();
+                }
+            });
+            t.start();
         }
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void botonDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDetenerActionPerformed
         // Detener todo
+        t.stop();
         instancia.detenerServidor();
         jLabel1.setForeground(Color.red);
     }//GEN-LAST:event_botonDetenerActionPerformed
@@ -121,7 +131,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         DB db = new DB();
         db.conectar();
-        db.consulta();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
