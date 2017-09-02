@@ -44,8 +44,8 @@ Cuando el usuario pide detener el contenedor
 ![Image of Yaktocat](Proyecto-1-Corte/SocketsFinal/Deteniendo-APP.png)
 
 To Do:
- - [ ] Crear propia imagen en docker basada en wnameless/mysql-phpmyadmin
- - [ ] Poner el comando de docker en el servidor
+ - [x] Crear propia imagen en docker basada en wnameless/mysql-phpmyadmin
+ - [x] Poner el comando de docker en el servidor
  - [ ] Recrear el proyecto con RMI
 
 ## Web services y RESTful
