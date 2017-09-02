@@ -1,27 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author aroc
- */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private int numeroPuerto = 5000;
     private int id;
+    private int puertoPHP;
+    private int puertoSQL;
+    private String ip;
 
     public VentanaPrincipal() {
         initComponents();
@@ -39,10 +35,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonIniciar = new javax.swing.JButton();
         jButtonDetener = new javax.swing.JButton();
+        url = new javax.swing.JLabel();
+        jlabelSQL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("App");
+        setTitle("App [ID:?]");
         setLocation(new java.awt.Point(100, 100));
+        setMinimumSize(new java.awt.Dimension(235, 150));
         setResizable(false);
         getContentPane().setLayout(new java.awt.FlowLayout());
 
@@ -66,6 +65,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDetener);
+        getContentPane().add(url);
+        getContentPane().add(jlabelSQL);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -81,16 +82,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             salida.writeObject("Dame server");
             String response = (String) entrada.readObject();
+
             System.out.println(response);
+            ip = socket.getInetAddress().getHostAddress();
             id = Integer.parseInt(response.substring(response.lastIndexOf("?") + 1));
+            puertoPHP = Integer.parseInt(response.substring(0, response.indexOf("?")));
+            puertoSQL = Integer.parseInt(response.substring(response.indexOf("?") + 1, response.lastIndexOf("?")));
+            System.out.println("ID: " + id);
+            System.out.println("IP: " + ip);
+            System.out.println("PHP: " + puertoPHP);
+            System.out.println("SQL: " + puertoSQL);
+
             jLabel1.setForeground(Color.green);
-            JOptionPane.showMessageDialog(rootPane, response + "\n" + socket.getInetAddress().getHostAddress());
             entrada.close();
             salida.close();
             socket.close();
+
+            Desktop.getDesktop().browse(new URI("http://" + ip + ":" + puertoPHP + "/phpmyadmin"));
+            url.setText("http://" + ip + ":" + puertoPHP + "/phpmyadmin");
+            jlabelSQL.setText("PuertoSQL: " + puertoSQL);
+            this.setTitle("App [ID:" + id + "]");
         } catch (IOException ex) {
+            System.out.println("(LOG) [ERROR] No se pudo contactar al servidor");
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonIniciarActionPerformed
@@ -110,7 +127,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             entrada.close();
             salida.close();
             socket.close();
+            url.setText("");
+            jlabelSQL.setText("");
+            this.setTitle("App [ID:?]");
         } catch (IOException ex) {
+            System.out.println("(LOG) [ERROR] No se pudo contactar al servidor");
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonDetenerActionPerformed
@@ -154,5 +175,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDetener;
     private javax.swing.JButton jButtonIniciar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jlabelSQL;
+    private javax.swing.JLabel url;
     // End of variables declaration//GEN-END:variables
 }

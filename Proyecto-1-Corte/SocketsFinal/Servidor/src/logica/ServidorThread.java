@@ -3,7 +3,6 @@ package logica;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
@@ -15,10 +14,13 @@ public class ServidorThread extends Thread {
     private ObjectInputStream in;
     private ObjectOutputStream out;
     private DB db;
+    private Runtime shell;
+    private Process proceso;
 
     public ServidorThread(Socket cliente) {
         this.cliente = cliente;
 
+        shell = Runtime.getRuntime();
         db = new DB();
         db.conectar();
 
@@ -48,26 +50,37 @@ public class ServidorThread extends Thread {
         }
 
         if (mensajeRecibido.equals("Dame server")) {
-            // COMANDO DOCKER
-            // docker run -d xxdrackleroxx/imagen --name=[id] -p [PuertoPHP]:80 -p [PuertoSQL]:3306
             try {
                 Pc usuario = db.insertar();
-                mensajeAMandar = InetAddress.getLocalHost().getHostAddress() + ":" + usuario.getPuertoPHP() + "/phpmyadmin ?" + usuario.getPuertoSQL() + "?" + usuario.getId();
+                // COMANDO DOCKER
+                // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test:1.0
+                proceso = shell.exec("docker run -d --rm -p " + usuario.getPuertoPHP() + ":80 -p " + usuario.getPuertoSQL() + ":3306 --name=server" + usuario.getId() + " xxdrackleroxx/test:1.0");
+                proceso.waitFor();
+                mensajeAMandar = usuario.getPuertoPHP() + "?" + usuario.getPuertoSQL() + "?" + usuario.getId();
                 out.writeObject(mensajeAMandar);
-                System.out.println("(LOG) [OK] Respuesta al cliente " + cliente.getInetAddress().getHostAddress() + " de " + usuario);
+                System.out.println("(LOG) [OK] Respuesta al cliente [" + cliente.getInetAddress().getHostAddress() + "] de " + usuario);
             } catch (UnknownHostException ex) {
                 System.out.println("(LOG) [ERROR] No se pudo obtener la IP del servidor");
                 Logger.getLogger(ServidorThread.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 System.out.println("(LOG) [ERROR] No se pudo enviar mensaje al cliente");
                 Logger.getLogger(ServidorThread.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                System.out.println("(LOG) [ERROR] Problema ejecutando docker run");
+                Logger.getLogger(ServidorThread.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             if (mensajeRecibido.matches("Mata server(.*)")) {
-                // COMANDO DOCKER
-                // docker kill [id] & docker rm [id]
                 Integer id = Integer.parseInt(mensajeRecibido.substring(11));
                 db.eliminar(id);
+                try {
+                    // COMANDO DOCKER
+                    // docker stop -t 0 server[ID]
+                    proceso = shell.exec("docker stop -t 0 server" + id);
+                } catch (IOException ex) {
+                    Logger.getLogger(ServidorThread.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("(LOG) [ERROR] Problema ejecutando docker stop con server" + id);
+                }
                 System.out.println("(LOG) [OK] App de cliente [" + cliente.getInetAddress().getHostAddress() + "] id:" + id + " eliminada");
             }
         }

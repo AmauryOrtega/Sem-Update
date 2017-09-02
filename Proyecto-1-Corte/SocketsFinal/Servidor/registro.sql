@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-08-2017 a las 04:03:47
+-- Tiempo de generación: 02-09-2017 a las 20:16:22
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -37,7 +37,7 @@ CREATE TABLE `registros` (
 --
 
 INSERT INTO `registros` (`idUsuario`, `puertoPHP`, `puertoSQL`) VALUES
-(0, 2000, 3000);
+(1, 2000, 3000);
 
 --
 -- Índices para tablas volcadas
@@ -47,9 +47,7 @@ INSERT INTO `registros` (`idUsuario`, `puertoPHP`, `puertoSQL`) VALUES
 -- Indices de la tabla `registros`
 --
 ALTER TABLE `registros`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD UNIQUE KEY `id` (`idUsuario`),
-  ADD KEY `id_2` (`idUsuario`);
+  ADD PRIMARY KEY (`idUsuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -59,7 +57,7 @@ ALTER TABLE `registros`
 -- AUTO_INCREMENT de la tabla `registros`
 --
 ALTER TABLE `registros`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
