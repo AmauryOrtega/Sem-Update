@@ -5,10 +5,8 @@ Repositorio para la asignatura Seminario de Actualización.
   - [1 Corte](#1-corte)
     - [1.1 Sockets](#11-sockets)
     - [1.2 Sockets modificado](#12-sockets-con-modificaciones)
-    - [1.3 RPC y RMI](#13-rpc-y-rmi)
+    - [1.3 ~~RPC y RMI~~](#13-rpc-y-rmi)
     - [1.4 Proyecto final de corte](#14-proyecto-final-de-corte)
-      - [1.4.1 Socket y ServerSocket]()
-      - [1.4.2 Datagram]()
   - [Clases utiles](#clases-utiles)
 <!---  - [2 Corte](#2-corte)--->
 <!---  - [3 Corte](#3-corte)--->
@@ -31,38 +29,36 @@ Usando la actividad [1.1](#11-sockets), hacer las siguientes actividades
 - [ ] El cliente cuando se conecta, envia una instancia de objeto PC. Hay que crear la clase PC en un projecto java library y asi tener un .jar en el servidor y en el cliente
 
 ### 1.3 RPC y RMI
-ToDo
-[Link 1](https://www.adictosaltrabajo.com/tutoriales/rmi-remote-registry/)
-[Link proyecto 1](http://omarghader.github.io/docker-tutorial-phpmyadmin-and-mysql-server/)
-[Link proyecto 2](https://blog.thenets.org/how-to-install-mysql-and-phpmyadmin-with-docker/)
+ToDo, no se pudo lograr hacer de forma correcta.
+  - [Link 1](https://www.adictosaltrabajo.com/tutoriales/rmi-remote-registry/)
+  - [Link proyecto 1](http://omarghader.github.io/docker-tutorial-phpmyadmin-and-mysql-server/)
+  - [Link proyecto 2](https://blog.thenets.org/how-to-install-mysql-and-phpmyadmin-with-docker/)
 
 ### 1.4 Proyecto final de corte
-Usando sockets se tendra un servidor recibiendo peticiones de clientes para ofrecer un contenedor con phpmyadmin y mysql en 2 puertos unicos por cliente. [Codigo](Proyecto-1-Corte/)
-
-Cuando el usuario pide el contenedor
-![Image of Yaktocat](Proyecto-1-Corte/SocketsFinal/Pidiendo-APP.png)
-
-Cuando el usuario pide detener el contenedor
-![Image of Yaktocat](Proyecto-1-Corte/SocketsFinal/Deteniendo-APP.png)
+Usando sockets y datagram se tendra un servidor recibiendo peticiones de clientes para ofrecer un contenedor con phpmyadmin y mysql en 2 puertos unicos por cliente para trabajar de forma remota y aislada. [Leer mas](Proyecto-1-Corte/)
 
 To Do:
  - [x] Crear propia imagen en docker basada en wnameless/mysql-phpmyadmin
  - [x] Poner el comando de docker en el servidor
- - [ ] Recrear el proyecto con RMI
+ - [ ] Recrear el proyecto con Datagram
+
+Codigo:
+  - [Socket y ServerSocket](Proyecto-1-Corte/SocketsFinal)
+<!---  - [Datagram](Proyecto-1-Corte)--->
 
 ## Web services y RESTful
 ## SOAP
 ## Push. Google firebase
 
 # Clases utiles
- - Thread, Task, Runnable, Process, Time
- - SocketChannel vs Socket en Java
- - JPA Framework para trabajar base de datos de forma abstracta
- - Derby en netbeans para hacer BD
- - Libreria hyperic/sigar en github
- - Active record
- - WebRTC
+  - Thread, Task, Runnable, Process, Time
+  - SocketChannel vs Socket en Java
+  - JPA Framework para trabajar base de datos de forma abstracta
+  - Derby en netbeans para hacer BD
+  - Libreria hyperic/sigar en github
+  - Active record
+  - WebRTC
 
 # Proyecto
-- **Articulo** Final de curso. Estudio comparativo RPC, RMI, SOCKET, MQTT
-- Informe tecnico del proyecto
+  - **Articulo** Final de curso. Estudio comparativo RPC, RMI, SOCKET, MQTT
+  - Informe tecnico del proyecto
