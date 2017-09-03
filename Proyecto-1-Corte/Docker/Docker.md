@@ -39,6 +39,11 @@ wget https://gist.githubusercontent.com/AmauryOrtega/88ed9233d6b826547ff537e89fc
 
 # Final
 ```
-docker run -d --rm -p 49161:80 -p 49162:3306 --name=server xxdrackleroxx/test:1.0
+docker run -d --rm -p 49161:80 -p 49162:3306 --name=server xxdrackleroxx/test
+docker stop -t 0 server
+```
+# Final for server
+```
+docker run -d --rm -p 80:80 -p 3306:3306 --name=server xxdrackleroxx/test
 docker stop -t 0 server
 ```

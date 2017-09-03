@@ -14,7 +14,7 @@ public class DB {
     private String db_ip = "localhost";
     private String db_port = "3306";
     private String db_name = "registro";
-    private String user = "test";
+    private String user = "root";
     private String pass = "";
 
     public void conectar() {

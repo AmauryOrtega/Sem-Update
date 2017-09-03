@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private int numeroPuerto = 5000;
+    private String servidor= "localhost";
     private int id;
     private int puertoPHP;
     private int puertoSQL;
@@ -74,7 +75,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         try {
             // Se intenta conectar, retorna IOException en caso que no pueda
-            Socket socket = new Socket("localhost", numeroPuerto);
+            Socket socket = new Socket(servidor, numeroPuerto);
 
             // Stream para e/s, se crea primero la salida
             ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());

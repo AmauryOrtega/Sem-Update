@@ -7,7 +7,9 @@ Repositorio para la asignatura Seminario de Actualización.
     - [1.2 Sockets modificado](#12-sockets-con-modificaciones)
     - [1.3 RPC y RMI](#13-rpc-y-rmi)
     - [1.4 Proyecto final de corte](#14-proyecto-final-de-corte)
-  - [Clases utiles]()
+      - [1.4.1 Socket y ServerSocket]()
+      - [1.4.2 Datagram]()
+  - [Clases utiles](#clases-utiles)
 <!---  - [2 Corte](#2-corte)--->
 <!---  - [3 Corte](#3-corte)--->
 
