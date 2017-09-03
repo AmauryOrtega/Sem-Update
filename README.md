@@ -28,7 +28,7 @@ Usando la actividad [1.1](#11-sockets), hacer las siguientes actividades
 - [ ] Se debe mantener un registro de quien se conecta a que hora (BD)
 - [ ] El cliente cuando se conecta, envia una instancia de objeto PC. Hay que crear la clase PC en un projecto java library y asi tener un .jar en el servidor y en el cliente
 
-### 1.3 RPC y RMI
+### 1.3 ~~RPC y RMI~~
 ToDo, no se pudo lograr hacer de forma correcta.
   - [Link 1](https://www.adictosaltrabajo.com/tutoriales/rmi-remote-registry/)
   - [Link proyecto 1](http://omarghader.github.io/docker-tutorial-phpmyadmin-and-mysql-server/)
