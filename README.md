@@ -40,7 +40,7 @@ Usando sockets y datagram se tendra un servidor recibiendo peticiones de cliente
 To Do:
  - [x] Crear propia imagen en docker basada en wnameless/mysql-phpmyadmin
  - [x] Poner el comando de docker en el servidor
- - [ ] Recrear el proyecto con Datagram
+ - [x] Recrear el proyecto con Datagram
 
 Codigo:
   - [Socket y ServerSocket](Proyecto-1-Corte/SocketsFinal)
