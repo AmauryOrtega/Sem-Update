@@ -36,7 +36,7 @@ Servidor.ServidorThread->Servidor.ServidorThread: docker stop serverID
 --->
 
 ## Demo
-### Servidor 
+### Servidor
 ![](Imagenes/Server-1.png)
 ### Cliente
 ![](Imagenes/Cliente-1.png)
