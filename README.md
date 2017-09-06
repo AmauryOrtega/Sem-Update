@@ -34,8 +34,10 @@ ToDo, no se pudo lograr hacer de forma correcta.
   - [Link proyecto 1](http://omarghader.github.io/docker-tutorial-phpmyadmin-and-mysql-server/)
   - [Link proyecto 2](https://blog.thenets.org/how-to-install-mysql-and-phpmyadmin-with-docker/)
 
+Debido a esto se decidio usar [datagram](#14-proyecto-final-de-corte) en el proyecto final.
+
 ### 1.4 Proyecto final de corte
-Usando sockets y datagram se tendra un servidor recibiendo peticiones de clientes para ofrecer un contenedor con phpmyadmin y mysql en 2 puertos unicos por cliente para trabajar de forma remota y aislada. [Leer mas](Proyecto-1-Corte/)
+Usando **sockets** y **datagram** se tendra un servidor recibiendo peticiones de clientes para ofrecer un contenedor con phpmyadmin y mysql en 2 puertos unicos por cliente para trabajar de forma remota y aislada. [Leer mas](Proyecto-1-Corte/)
 
 To Do:
  - [x] Crear propia imagen en docker basada en wnameless/mysql-phpmyadmin
