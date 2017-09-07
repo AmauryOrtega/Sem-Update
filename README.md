@@ -48,6 +48,10 @@ Codigo:
   - [Socket y ServerSocket](Proyecto-1-Corte/SocketsFinal)
   - [DatagramSocket y DatagramPacket](Proyecto-1-Corte/DatagramFinal)
 
+Informes: 
+  - [Socket y ServerSocket](Proyecto-1-Corte/SocketsFinal/Informe-Sockets.pdf)
+  - [DatagramSocket y DatagramPacket](Proyecto-1-Corte/DatagramFinal/Informe-Datagram.pdf)
+
 ## Web services y RESTful
 ## SOAP
 ## Push. Google firebase
