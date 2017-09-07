@@ -54,7 +54,7 @@ public class ServidorThread extends Thread {
                 Pc usuario = db.insertar();
                 // COMANDO DOCKER
                 // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test:1.0
-                proceso = shell.exec("docker run -d --rm -p " + usuario.getPuertoPHP() + ":80 -p " + usuario.getPuertoSQL() + ":3306 --name=server" + usuario.getId() + " xxdrackleroxx/test:1.0");
+                proceso = shell.exec("docker run -d --rm -p " + usuario.getPuertoPHP() + ":80 -p " + usuario.getPuertoSQL() + ":3306 --name=server" + usuario.getId() + " xxdrackleroxx/test");
                 proceso.waitFor();
                 mensajeAMandar = usuario.getPuertoPHP() + "?" + usuario.getPuertoSQL() + "?" + usuario.getId();
                 out.writeObject(mensajeAMandar);
