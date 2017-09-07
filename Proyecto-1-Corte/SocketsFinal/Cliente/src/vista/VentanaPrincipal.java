@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private int numeroPuerto = 5000;
-    private String servidor= "localhost";
+    private String servidor= "192.168.0.100";
     private int id;
     private int puertoPHP;
     private int puertoSQL;
