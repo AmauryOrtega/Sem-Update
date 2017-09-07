@@ -10,6 +10,9 @@ Debido a que la aplicacion necesita una base de datos, usaremos la misma imagen 
 
 Para monitorear todos los contenedor de forma rapida se tiene el script [monitor.sh](Docker/monitor.sh). A partir de aqui se puede acceder a phpmyadmin por el puerto 80 para crear la base de datos `registro` y luego importar [registro.sql](../registro.sql).
 
+## Arquitectura
+![Arquitectura](Imagenes/Arquitectura.png)
+
 ## Comunicacion
 [Como hacer diagramas de secuencia](https://bramp.github.io/js-sequence-diagrams/)
 
