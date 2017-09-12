@@ -7,8 +7,9 @@ Repositorio para la asignatura Seminario de Actualización.
     - [1.2 Sockets modificado](#12-sockets-con-modificaciones)
     - [1.3 ~~RPC y RMI~~](#13-rpc-y-rmi)
     - [1.4 Proyecto final de corte](#14-proyecto-final-de-corte)
+  - [2 Corte](#2-corte)
+    - [2.1 Web service, JPA y cliente Java](#21-web-service,-jpa-y-cliente-java)
   - [Clases utiles](#clases-utiles)
-<!---  - [2 Corte](#2-corte)--->
 <!---  - [3 Corte](#3-corte)--->
 
 ## 1 Corte
@@ -52,7 +53,11 @@ Informes:
   - [Socket y ServerSocket](Proyecto-1-Corte/SocketsFinal/Informe-Sockets.pdf)
   - [DatagramSocket y DatagramPacket](Proyecto-1-Corte/DatagramFinal/Informe-Datagram.pdf)
 
-## Web services y RESTful
+## 2 Corte
+### 2.1 Web service, JPA y cliente Java
+Ejemplo de web service usando jsp como servidor, jpa para acceder a la base de datos y un cliente en java. [Codigo](2-Corte/ejemplo)
+
+### 2.2 RESTful
 ## SOAP
 ## Push. Google firebase
 
