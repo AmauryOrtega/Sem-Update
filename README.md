@@ -69,6 +69,9 @@ Ejemplo de web service usando jsp como servidor, jpa para acceder a la base de d
   - Libreria hyperic/sigar en github
   - Active record
   - WebRTC
+  - ORM Lite
+  - ActiveJDBC
+  - ActiveJPA
 
 # Proyecto
   - **Articulo** Final de curso. Estudio comparativo RPC, RMI, SOCKET, MQTT
