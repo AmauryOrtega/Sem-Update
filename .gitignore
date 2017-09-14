@@ -16,18 +16,18 @@
 .DS_Store
 
 # Sockets
-/Sockets/nbproject/private/
-/Sockets/build/
-/Sockets/dist/
+Sockets/nbproject/private/
+Sockets/build/
+Sockets/dist/
 
 # Socketsfinal
-/Proyecto-1-Corte/SocketsFinal/Cliente/build/
-/Proyecto-1-Corte/SocketsFinal/Cliente/dist/
-/Proyecto-1-Corte/SocketsFinal/Servidor/build/
-/Proyecto-1-Corte/SocketsFinal/Servidor/dist/
+Proyecto-1-Corte/SocketsFinal/Cliente/build/
+Proyecto-1-Corte/SocketsFinal/Cliente/dist/
+Proyecto-1-Corte/SocketsFinal/Servidor/build/
+Proyecto-1-Corte/SocketsFinal/Servidor/dist/
 
 # Datagramfinal
-/Proyecto-1-Corte/DatagramFinal/ClienteDatagram/dist/
-/Proyecto-1-Corte/DatagramFinal/ClienteDatagram/build/
-/Proyecto-1-Corte/DatagramFinal/ServidorDatagram/dist/
-/Proyecto-1-Corte/DatagramFinal/ServidorDatagram/build/
+Proyecto-1-Corte/DatagramFinal/ClienteDatagram/dist/
+Proyecto-1-Corte/DatagramFinal/ClienteDatagram/build/
+Proyecto-1-Corte/DatagramFinal/ServidorDatagram/dist/
+Proyecto-1-Corte/DatagramFinal/ServidorDatagram/build/
