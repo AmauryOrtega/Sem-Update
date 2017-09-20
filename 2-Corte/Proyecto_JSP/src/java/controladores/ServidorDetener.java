@@ -32,7 +32,7 @@ public class ServidorDetener extends HttpServlet {
         // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test:1.0
         proceso = shell.exec("docker stop -t 0 server" + id);
 
-        request.getSession().setAttribute("mensaje", "Servidor " + id + "eliminado");
+        request.getSession().setAttribute("mensaje", "Servidor " + id + " eliminado");
         request.getRequestDispatcher("mensaje.jsp").forward(request, response);
     }
 
