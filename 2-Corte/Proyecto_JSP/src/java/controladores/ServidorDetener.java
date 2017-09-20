@@ -21,9 +21,17 @@ public class ServidorDetener extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer id = Integer.parseInt(request.getParameter("id"));
+
         DB base_datos = new DB();
         base_datos.conectar();
         base_datos.eliminar(id);
+
+        Process proceso;
+        Runtime shell = Runtime.getRuntime();
+        // COMANDO DOCKER
+        // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test:1.0
+        proceso = shell.exec("docker stop -t 0 server" + id);
+
         request.getSession().setAttribute("mensaje", "Servidor " + id + "eliminado");
         request.getRequestDispatcher("mensaje.jsp").forward(request, response);
     }

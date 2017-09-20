@@ -22,13 +22,22 @@ public class ServidorIniciar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
+
             DB base_datos = new DB();
             base_datos.conectar();
             Pc usuario = base_datos.insertar();
+            
             //Guardado de variable en sesion
             request.getSession().setAttribute("pc", usuario);
             base_datos.desconectar();
+            
+            Process proceso;
+            Runtime shell = Runtime.getRuntime();
+            // COMANDO DOCKER
+            // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test:1.0
+            proceso = shell.exec("docker run -d --rm -p " + usuario.getPuertoPHP() + ":80 -p " + usuario.getPuertoSQL() + ":3306 --name=server" + usuario.getId() + " xxdrackleroxx/test");
+            proceso.waitFor();
+            
             request.getRequestDispatcher("iniciado.jsp").forward(request, response);
         } catch (Exception e) {
             request.getSession().setAttribute("mensaje", "Error inesperado, porfavor intente mas tarde");
