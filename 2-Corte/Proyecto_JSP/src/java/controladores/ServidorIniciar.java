@@ -1,7 +1,6 @@
 package controladores;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +28,8 @@ public class ServidorIniciar extends HttpServlet {
             Pc usuario = base_datos.insertar();
             //Guardado de variable en sesion
             request.getSession().setAttribute("pc", usuario);
-            request.getRequestDispatcher("iniciado.jsp").forward(request, response);
             base_datos.desconectar();
+            request.getRequestDispatcher("iniciado.jsp").forward(request, response);
         } catch (Exception e) {
             request.getSession().setAttribute("mensaje", "Error inesperado, porfavor intente mas tarde");
             request.getRequestDispatcher("mensaje.jsp").forward(request, response);

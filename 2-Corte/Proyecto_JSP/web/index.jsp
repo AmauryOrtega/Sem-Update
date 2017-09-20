@@ -7,7 +7,7 @@
     </head>
     <body>
         <form action="servidoriniciar" name="form" method="post">
-            <button type="submit">Iniciar</button><br>
+            <button type="submit">Iniciar mi servidor</button><br>
         </form>
     </body>
 </html>

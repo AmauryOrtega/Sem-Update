@@ -1,3 +1,4 @@
+<%@page import="modelo.Util"%>
 <%@page import="modelo.Pc"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -16,11 +17,13 @@
         <title>Servidor <%=id%></title>
     </head>
     <body>
-        <h1>INICIADO</h1>
+        <h1>INICIADO SERVIDOR #<%=id%></h1>
 
-        <h4><%=id%></h4>
-        <h4><%=php%></h4>
-        <h4><%=sql%></h4>
+        <h4><a href="http://<%=Util.ip%>:<%=php%>/phpmyadmin">
+        http://<%=Util.ip%>:<%=php%>/phpmyadmin   
+        </a></h4>
+        <h4>Puerto PHP <%=php%></h4>
+        <h4>Puerto SQL <%=sql%></h4>
 
         <form action="servidordetener?id=<%=id%>" name="form" method="post">
             <button type="submit">detener</button><br>
