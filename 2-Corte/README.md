@@ -12,7 +12,7 @@ paquete entidades
 	attributes for regenerating tables
 
 paquete dao
-	(new JSF Pages from entity classes)
+	es posible hacer (new JSF Pages from entity classes)
 	new Persistence/JPA Controller classes from entity classes
 
 (Plugin para netbeans web design)

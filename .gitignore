@@ -1,13 +1,33 @@
-/Sockets/nbproject/private/
-/Sockets/build/
-/Sockets/dist/
-/SocketsFinal/Servidor/nbproject/private/
-/SocketsFinal/Cliente/nbproject/private/
-/SocketsFinal/Servidor/build/
-/SocketsFinal/Cliente/build/
-/Proyecto-1-Corte/SocketsFinal/Cliente/build/
-/Proyecto-1-Corte/SocketsFinal/Servidor/dist/
-/Proyecto-1-Corte/SocketsFinal/Cliente/dist/
-/Proyecto-1-Corte/DatagramFinal/ClienteDatagram/dist/
-/Proyecto-1-Corte/DatagramFinal/ServidorDatagram/dist/
-/2-Corte/ejemploJPA/nbproject/private/
+# Binaries
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.war
+*.ear
+*.sar
+*.class
+
+# OS
+.DS_Store
+
+# Sockets
+Sockets/nbproject/private/
+Sockets/build/
+Sockets/dist/
+
+# Socketsfinal
+Proyecto-1-Corte/SocketsFinal/Cliente/build/
+Proyecto-1-Corte/SocketsFinal/Cliente/dist/
+Proyecto-1-Corte/SocketsFinal/Servidor/build/
+Proyecto-1-Corte/SocketsFinal/Servidor/dist/
+
+# Datagramfinal
+Proyecto-1-Corte/DatagramFinal/ClienteDatagram/dist/
+Proyecto-1-Corte/DatagramFinal/ClienteDatagram/build/
+Proyecto-1-Corte/DatagramFinal/ServidorDatagram/dist/
+Proyecto-1-Corte/DatagramFinal/ServidorDatagram/build/
