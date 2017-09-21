@@ -1,0 +1,3 @@
+Se puede tener un controlador para servidor con url /servidor?accion=[a|b|c]
+dentro de processRequest se hacen muchas cosas, pero la principal es llamar a capturarAccion(request, response)
+capturarAccion sacara el parametro accion para saber que hacer

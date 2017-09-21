@@ -18,7 +18,7 @@
     </head>
     <body>
         <h1>INICIADO SERVIDOR #<%=id%></h1>
-
+        <%--Aqui se puede cambiar util.ip por request.get... para IP--%>
         <h4><a href="http://<%=Util.ip%>:<%=php%>/phpmyadmin">
         http://<%=Util.ip%>:<%=php%>/phpmyadmin   
         </a></h4>

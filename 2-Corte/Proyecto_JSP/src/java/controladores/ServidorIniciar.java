@@ -34,7 +34,7 @@ public class ServidorIniciar extends HttpServlet {
             Process proceso;
             Runtime shell = Runtime.getRuntime();
             // COMANDO DOCKER
-            // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test:1.0
+            // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test
             proceso = shell.exec("docker run -d --rm -p " + usuario.getPuertoPHP() + ":80 -p " + usuario.getPuertoSQL() + ":3306 --name=server" + usuario.getId() + " xxdrackleroxx/test");
             proceso.waitFor();
             
