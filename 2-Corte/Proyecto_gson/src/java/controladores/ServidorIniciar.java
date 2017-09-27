@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.DB;
 import modelo.Pc;
+import modelo.Util;
 
 public class ServidorIniciar extends HttpServlet {
 
@@ -26,18 +27,20 @@ public class ServidorIniciar extends HttpServlet {
             DB base_datos = new DB();
             base_datos.conectar();
             Pc usuario = base_datos.insertar();
-            
+
             //Guardado de variable en sesion
             request.getSession().setAttribute("pc", usuario);
             base_datos.desconectar();
-            
-            Process proceso;
-            Runtime shell = Runtime.getRuntime();
-            // COMANDO DOCKER
-            // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test
-            proceso = shell.exec("docker run -d --rm -p " + usuario.getPuertoPHP() + ":80 -p " + usuario.getPuertoSQL() + ":3306 --name=server" + usuario.getId() + " xxdrackleroxx/test");
-            proceso.waitFor();
-            
+
+            if (Util.docker) {
+                Process proceso;
+                Runtime shell = Runtime.getRuntime();
+                // COMANDO DOCKER
+                // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test
+                proceso = shell.exec("docker run -d --rm -p " + usuario.getPuertoPHP() + ":80 -p " + usuario.getPuertoSQL() + ":3306 --name=server" + usuario.getId() + " xxdrackleroxx/test");
+                proceso.waitFor();
+
+            }
             request.getRequestDispatcher("iniciado.jsp").forward(request, response);
         } catch (Exception e) {
             request.getSession().setAttribute("mensaje", "Error inesperado, porfavor intente mas tarde");

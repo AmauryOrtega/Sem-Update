@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.DB;
+import modelo.Util;
 
 public class ServidorDetener extends HttpServlet {
 
@@ -26,11 +27,13 @@ public class ServidorDetener extends HttpServlet {
         base_datos.conectar();
         base_datos.eliminar(id);
 
-        Process proceso;
-        Runtime shell = Runtime.getRuntime();
-        // COMANDO DOCKER
-        // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test:1.0
-        proceso = shell.exec("docker stop -t 0 server" + id);
+        if (Util.docker) {
+            Process proceso;
+            Runtime shell = Runtime.getRuntime();
+            // COMANDO DOCKER
+            // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test:1.0
+            proceso = shell.exec("docker stop -t 0 server" + id);
+        }
 
         request.getSession().setAttribute("mensaje", "Servidor " + id + " eliminado");
         request.getRequestDispatcher("mensaje.jsp").forward(request, response);
