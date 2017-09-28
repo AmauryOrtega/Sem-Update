@@ -1,6 +1,8 @@
 package controladores;
 
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.Writer;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,13 +25,9 @@ public class ServidorIniciar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-
             DB base_datos = new DB();
             base_datos.conectar();
             Pc usuario = base_datos.insertar();
-
-            //Guardado de variable en sesion
-            request.getSession().setAttribute("pc", usuario);
             base_datos.desconectar();
 
             if (Util.docker) {
@@ -39,12 +37,24 @@ public class ServidorIniciar extends HttpServlet {
                 // docker run -d --rm -p [PuertoPHP]:80 -p [PuertoSQL]:3306 --name=server[ID] xxdrackleroxx/test
                 proceso = shell.exec("docker run -d --rm -p " + usuario.getPuertoPHP() + ":80 -p " + usuario.getPuertoSQL() + ":3306 --name=server" + usuario.getId() + " xxdrackleroxx/test");
                 proceso.waitFor();
-
             }
-            request.getRequestDispatcher("iniciado.jsp").forward(request, response);
+
+            String json = new Gson().toJson(usuario);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            Writer salida = null;
+            salida = response.getWriter();
+            salida.write(json);
+            salida.close();
+
         } catch (Exception e) {
-            request.getSession().setAttribute("mensaje", "Error inesperado, porfavor intente mas tarde");
-            request.getRequestDispatcher("mensaje.jsp").forward(request, response);
+            String json = new Gson().toJson("ERROR");
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            Writer salida = null;
+            salida = response.getWriter();
+            salida.write(json);
+            salida.close();
         }
 
     }

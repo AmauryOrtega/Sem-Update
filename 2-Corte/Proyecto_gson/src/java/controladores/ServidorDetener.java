@@ -35,8 +35,6 @@ public class ServidorDetener extends HttpServlet {
             proceso = shell.exec("docker stop -t 0 server" + id);
         }
 
-        request.getSession().setAttribute("mensaje", "Servidor " + id + " eliminado");
-        request.getRequestDispatcher("mensaje.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

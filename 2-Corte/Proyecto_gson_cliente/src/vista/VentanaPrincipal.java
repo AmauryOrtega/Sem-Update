@@ -1,24 +1,15 @@
 package vista;
 
-import java.awt.Color;
 import java.awt.Desktop;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Pc;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private int numeroPuerto = 5000;
-    private String servidor= "192.168.0.100";
-    private int id;
-    private int puertoPHP;
-    private int puertoSQL;
-    private String ip;
+    public static String ip = "192.168.0.100";
 
     public VentanaPrincipal() {
         initComponents();
@@ -74,67 +65,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         try {
-            // Se intenta conectar, retorna IOException en caso que no pueda
-            Socket socket = new Socket(servidor, numeroPuerto);
-
-            // Stream para e/s, se crea primero la salida
-            ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
-
-            salida.writeObject("Dame server");
-            String response = (String) entrada.readObject();
-
-            System.out.println(response);
-            ip = socket.getInetAddress().getHostAddress();
-            id = Integer.parseInt(response.substring(response.lastIndexOf("?") + 1));
-            puertoPHP = Integer.parseInt(response.substring(0, response.indexOf("?")));
-            puertoSQL = Integer.parseInt(response.substring(response.indexOf("?") + 1, response.lastIndexOf("?")));
-            System.out.println("ID: " + id);
-            System.out.println("IP: " + ip);
-            System.out.println("PHP: " + puertoPHP);
-            System.out.println("SQL: " + puertoSQL);
-
-            jLabel1.setForeground(Color.green);
-            entrada.close();
-            salida.close();
-            socket.close();
-
-            Desktop.getDesktop().browse(new URI("http://" + ip + ":" + puertoPHP + "/phpmyadmin"));
-            url.setText("http://" + ip + ":" + puertoPHP + "/phpmyadmin");
-            jlabelSQL.setText("PuertoSQL: " + puertoSQL);
-            this.setTitle("App [ID:" + id + "]");
-        } catch (IOException ex) {
-            System.out.println("(LOG) [ERROR] No se pudo contactar al servidor");
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Pc usuario;
+            
+            // Hacer peticion al servlet y capturar el json para convertirlo a Pc usando
+            // Pc usuario = gson.fromJson(string, Pc.class)
+            
+            Desktop.getDesktop().browse(new URI("http://" + ip + ":" + usuario.getPuertoPHP() + "/phpmyadmin"));
+            url.setText("http://" + ip + ":" + usuario.getPuertoPHP() + "/phpmyadmin");
+            jlabelSQL.setText("PuertoSQL: " + usuario.getPuertoSQL());
+            this.setTitle("App [ID:" + usuario.getId() + "]");
         } catch (URISyntaxException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     private void jButtonDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetenerActionPerformed
-        try {
-            // Se intenta conectar, retorna IOException en caso que no pueda
-            Socket socket = new Socket(servidor, numeroPuerto);
-
-            // Stream para e/s, se crea primero la salida
-            ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
-
-            salida.writeObject("Mata server" + id);
-            jLabel1.setForeground(Color.red);
-
-            entrada.close();
-            salida.close();
-            socket.close();
-            url.setText("");
-            jlabelSQL.setText("");
-            this.setTitle("App [ID:?]");
-        } catch (IOException ex) {
-            System.out.println("(LOG) [ERROR] No se pudo contactar al servidor");
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        // Haccer post al servlet
+        
+        url.setText("");
+        jlabelSQL.setText("");
+        this.setTitle("App [ID:?]");
     }//GEN-LAST:event_jButtonDetenerActionPerformed
 
     /**
