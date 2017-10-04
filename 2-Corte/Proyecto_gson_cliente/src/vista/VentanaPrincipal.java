@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import modelo.Pc;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -76,42 +75,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         try {
-            
-            /*CloseableHttpClient httpclient = HttpClients.createDefault();
-            HttpGet httpget = new HttpGet("http://"+ip+":8080/proyecto-gson/servidoriniciar");
-            CloseableHttpResponse response = httpclient.execute(httpget);
-            System.out.println(response.getStatusLine());
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                InputStream instream = entity.getContent();
-                String json = instream.toString();
-                System.out.println(json);
-                user = new Gson().fromJson(json, Pc.class);
-            }
-            EntityUtils.consume(entity);
-            response.close();*/
-
-            
             CloseableHttpClient httpclient = HttpClients.createDefault();
-            HttpPost httppost = new HttpPost("http://"+ip+":8080/proyecto-gson/servidoriniciar");
-            
-            /*
-            List <NameValuePair> nvps = new ArrayList <NameValuePair>();
-            nvps.add(new BasicNameValuePair("username", "vip"));
-            nvps.add(new BasicNameValuePair("password", "secret"));
-            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-             */
-            
-            CloseableHttpResponse response = httpclient.execute(httppost);
-            System.out.println(response.getStatusLine());
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {                
+            HttpPost httppost = new HttpPost("http://" + ip + ":8080/proyecto-gson/servidoriniciar");
+
+            CloseableHttpResponse respuesta = httpclient.execute(httppost);
+            System.out.println(respuesta.getStatusLine());
+
+            HttpEntity entity = respuesta.getEntity();
+            if (entity != null) {
                 String json = EntityUtils.toString(entity);
                 System.out.println(json);
+                // Aqui es posible recibir un json con mensaje "ERROR"
                 user = new Gson().fromJson(json, Pc.class);
             }
             EntityUtils.consume(entity);
-            response.close();
+            respuesta.close();
+
             jLabel1.setForeground(Color.green);
             Desktop.getDesktop().browse(new URI("http://" + ip + ":" + user.getPuertoPHP() + "/phpmyadmin"));
             url.setText("http://" + ip + ":" + user.getPuertoPHP() + "/phpmyadmin");
@@ -126,18 +105,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButtonDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetenerActionPerformed
 
         try {
-
             CloseableHttpClient httpclient = HttpClients.createDefault();
-            HttpPost httppost = new HttpPost("http://"+ip+"8080/proyecto-gson/servidordetener?id=" + user.getId());
+            HttpPost httppost = new HttpPost("http://" + ip + "8080/proyecto-gson/servidordetener?id=" + user.getId());
+            
             CloseableHttpResponse response = httpclient.execute(httppost);
             System.out.println(response.getStatusLine());
+            
             HttpEntity entity = response.getEntity();
             EntityUtils.consume(entity);
             response.close();
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        user = new Pc();
+        user = null;
         jLabel1.setForeground(Color.red);
         url.setText("");
         jlabelSQL.setText("");

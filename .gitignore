@@ -6,7 +6,6 @@
 *.rar
 *.tar
 *.zip
-*.war
 *.ear
 *.sar
 *.class
@@ -15,9 +14,9 @@
 .DS_Store
 
 # Sockets
-Sockets/nbproject/private/
-Sockets/build/
-Sockets/dist/
+/1-Corte/Sockets/nbproject/private/
+/1-Corte/Sockets/build/
+/1-Corte/Sockets/dist/
 
 # Socketsfinal
 Proyecto-1-Corte/SocketsFinal/Cliente/build/
@@ -30,13 +29,20 @@ Proyecto-1-Corte/DatagramFinal/ClienteDatagram/dist/
 Proyecto-1-Corte/DatagramFinal/ClienteDatagram/build/
 Proyecto-1-Corte/DatagramFinal/ServidorDatagram/dist/
 Proyecto-1-Corte/DatagramFinal/ServidorDatagram/build/
+
+# Clase
 /2-Corte/clase/dist/
-/2-Corte/Proyecto_JSP/nbproject/private/
+
+# Proyecto JSP
 /2-Corte/Proyecto_JSP/build/
 /2-Corte/Proyecto_JSP/dist/
-/2-Corte/clase/nbproject/private/
-/2-Corte/Proyecto_gson/nbproject/private/
-/2-Corte/Proyecto_gson_cliente/nbproject/private/
+
+# Proyecto gson
 /2-Corte/Proyecto_gson/build/
+/2-Corte/Proyecto_gson/dist/
+
+# Proyecto gson cliente
 /2-Corte/Proyecto_gson_cliente/build/
 /2-Corte/Proyecto_gson_cliente/dist/
+/2-Corte/Proyecto_gson/nbproject/private/
+/2-Corte/Proyecto_gson_cliente/nbproject/private/
