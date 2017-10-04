@@ -1,15 +1,26 @@
 package vista;
 
+import com.google.gson.Gson;
+import java.awt.Color;
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Pc;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    public static String ip = "192.168.0.100";
+    public static String ip = "localhost";
+    Pc user = new Pc();
 
     public VentanaPrincipal() {
         initComponents();
@@ -65,24 +76,69 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         try {
-            Pc usuario;
             
-            // Hacer peticion al servlet y capturar el json para convertirlo a Pc usando
-            // Pc usuario = gson.fromJson(string, Pc.class)
+            /*CloseableHttpClient httpclient = HttpClients.createDefault();
+            HttpGet httpget = new HttpGet("http://"+ip+":8080/proyecto-gson/servidoriniciar");
+            CloseableHttpResponse response = httpclient.execute(httpget);
+            System.out.println(response.getStatusLine());
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                InputStream instream = entity.getContent();
+                String json = instream.toString();
+                System.out.println(json);
+                user = new Gson().fromJson(json, Pc.class);
+            }
+            EntityUtils.consume(entity);
+            response.close();*/
+
             
-            Desktop.getDesktop().browse(new URI("http://" + ip + ":" + usuario.getPuertoPHP() + "/phpmyadmin"));
-            url.setText("http://" + ip + ":" + usuario.getPuertoPHP() + "/phpmyadmin");
-            jlabelSQL.setText("PuertoSQL: " + usuario.getPuertoSQL());
-            this.setTitle("App [ID:" + usuario.getId() + "]");
-        } catch (URISyntaxException ex) {
+            CloseableHttpClient httpclient = HttpClients.createDefault();
+            HttpPost httppost = new HttpPost("http://"+ip+":8080/proyecto-gson/servidoriniciar");
+            
+            /*
+            List <NameValuePair> nvps = new ArrayList <NameValuePair>();
+            nvps.add(new BasicNameValuePair("username", "vip"));
+            nvps.add(new BasicNameValuePair("password", "secret"));
+            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+             */
+            
+            CloseableHttpResponse response = httpclient.execute(httppost);
+            System.out.println(response.getStatusLine());
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {                
+                String json = EntityUtils.toString(entity);
+                System.out.println(json);
+                user = new Gson().fromJson(json, Pc.class);
+            }
+            EntityUtils.consume(entity);
+            response.close();
+            jLabel1.setForeground(Color.green);
+            Desktop.getDesktop().browse(new URI("http://" + ip + ":" + user.getPuertoPHP() + "/phpmyadmin"));
+            url.setText("http://" + ip + ":" + user.getPuertoPHP() + "/phpmyadmin");
+            jlabelSQL.setText("PuertoSQL: " + user.getPuertoSQL());
+            this.setTitle("App [ID:" + user.getId() + "]");
+
+        } catch (IOException | URISyntaxException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     private void jButtonDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetenerActionPerformed
-        
-        // Haccer post al servlet
-        
+
+        try {
+
+            CloseableHttpClient httpclient = HttpClients.createDefault();
+            HttpPost httppost = new HttpPost("http://"+ip+"8080/proyecto-gson/servidordetener?id=" + user.getId());
+            CloseableHttpResponse response = httpclient.execute(httppost);
+            System.out.println(response.getStatusLine());
+            HttpEntity entity = response.getEntity();
+            EntityUtils.consume(entity);
+            response.close();
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        user = new Pc();
+        jLabel1.setForeground(Color.red);
         url.setText("");
         jlabelSQL.setText("");
         this.setTitle("App [ID:?]");
