@@ -85,8 +85,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             if (entity != null) {
                 String json = EntityUtils.toString(entity);
                 System.out.println(json);
-                // Aqui es posible recibir un json con mensaje "ERROR"
-                user = new Gson().fromJson(json, Pc.class);
+                if (json.equals("ERROR")) {
+                    System.err.println("[LOG] Error inesperado, porfavor intente mas tarde");
+                } else {
+                    user = new Gson().fromJson(json, Pc.class);
+                }
+
             }
             EntityUtils.consume(entity);
             respuesta.close();
@@ -107,10 +111,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         try {
             CloseableHttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost("http://" + ip + ":8080/proyecto-gson/servidordetener?id=" + user.getId());
-            
+
             CloseableHttpResponse response = httpclient.execute(httppost);
             System.out.println(response.getStatusLine());
-            
+
             HttpEntity entity = response.getEntity();
             EntityUtils.consume(entity);
             response.close();
