@@ -1,6 +1,8 @@
 package modelo;
 
-public class Pc {
+import java.io.Serializable;
+
+public class Pc implements Serializable{
 
     private Integer id;
     private Integer puertoPHP;
