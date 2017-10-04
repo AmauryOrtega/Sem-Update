@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class DB {
 
     private Connection conexion;
-    private String db_ip = "localhost";
+    private String db_ip = Util.ip_db;
     private String db_port = "3306";
     private String db_name = "registro";
     private String user = "root";

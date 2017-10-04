@@ -106,7 +106,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         try {
             CloseableHttpClient httpclient = HttpClients.createDefault();
-            HttpPost httppost = new HttpPost("http://" + ip + "8080/proyecto-gson/servidordetener?id=" + user.getId());
+            HttpPost httppost = new HttpPost("http://" + ip + ":8080/proyecto-gson/servidordetener?id=" + user.getId());
             
             CloseableHttpResponse response = httpclient.execute(httppost);
             System.out.println(response.getStatusLine());
