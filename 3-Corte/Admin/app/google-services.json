@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "444269794651",
+    "firebase_url": "https://fir-admin-78c2b.firebaseio.com",
+    "project_id": "fir-admin-78c2b",
+    "storage_bucket": "fir-admin-78c2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444269794651:android:0def4ab8dd40eb35",
+        "android_client_info": {
+          "package_name": "aroc.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444269794651-i6mt6co6r4v7q19ge414ldo1pvegstu7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdEFC7-l8pjTX4HWkw9QWdg5kiYegbZf0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
