@@ -61,22 +61,22 @@ public class ServidorIniciar extends HttpServlet {
             httppost.addHeader("Content-Type", "application/json");
 
             JsonObject mensaje = new JsonObject();
-            mensaje.addProperty("to", "c8Yt-yQouZI:APA91bEkZOQLt1jESKmLwkDHD1gu7s-VJ8ThRy8JsHFhpgk3RbfwooiDnyHyhYpdWkylqLyeEHD_tAkoQvm5EyYVE3AumkF_cQwD027M_rTSTQsIpGySbDbY2N9S5OgKUAa2ADRS-GPH");
+            mensaje.addProperty("to", "c8Yt-yQouZI:APA91bEkZ0QLt1jESKmLwkDHD1gu7s-VJ8ThRv8JsHFhpgk3RbfwooiDnvHvhYpdWkvIqLveEHD_tAkoQvm5EyYVE3AumkF_cQwDO27M_rTSTQslpGySbDbY2N9S50gKUAa2ADRS-GPH");
             mensaje.addProperty("priority", "high");
 
             JsonObject notificacion = new JsonObject();
-            notificacion.addProperty("title", "Nuevo servidor");
+            notificacion.addProperty("title", "Nuevo contenedor");
             notificacion.addProperty("body", usuario.toString());
 
             mensaje.add("notification", notificacion);
-            
+
             httppost.setEntity(new StringEntity(mensaje.toString(), "UTF-8"));
-            
+            System.out.println("[LOG] Mensaje: " + mensaje);
             HttpResponse respuesta = httpclient.execute(httppost);
             System.out.println(respuesta.getStatusLine());
 
         } catch (Exception e) {
-            String json = new Gson().toJson("ERROR");
+            String json = new Gson().toJson("ERROR BD");
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             Writer salida = null;
@@ -127,20 +127,3 @@ public class ServidorIniciar extends HttpServlet {
     }// </editor-fold>
 
 }
-
-/*
-            Body
-            String body2 = "{\n"
-                    + "     \"notification\": {\n"
-                    + "         \"title\": \"Nuevo servidor\",\n"
-                    + "         \"body\": \"" + usuario.toString() + "\",\n"
-                    + "         \"sound\": \"default\",\n"
-                    + "         \"click_action\": \"FCM_PLUGIN_ACTIVITY\",\n"
-                    + "         \"icon\": \"fcm_push_icon\"\n"
-                    + "     },\n"
-                    + "     \"data\": {\n"
-                    + "         \"hello\": \"This is a Firebase Cloud Messagin  hbhj g Device Gr new v Message!\",\n"
-                    + "     },\n"
-                    + "     \"to\": \"c8Yt-yQouZI:APA91bEkZOQLt1jESKmLwkDHD1gu7s-VJ8ThRy8JsHFhpgk3RbfwooiDnyHyhYpdWkylqLyeEHD_tAkoQvm5EyYVE3AumkF_cQwD027M_rTSTQsIpGySbDbY2N9S5OgKUAa2ADRS-GPH\"\n"
-                    + "   }";
-            */
