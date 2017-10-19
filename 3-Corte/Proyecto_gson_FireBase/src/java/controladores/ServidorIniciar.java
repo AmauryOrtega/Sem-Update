@@ -1,6 +1,7 @@
 package controladores;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.Writer;
 import javax.servlet.ServletException;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.DB;
 import modelo.Pc;
 import modelo.Util;
-import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -55,17 +56,24 @@ public class ServidorIniciar extends HttpServlet {
 
             CloseableHttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost("https://fcm.googleapis.com/fcm/send");
-            StringEntity jsonPush = new StringEntity("{\"to\": \"c8Yt-yQouZI:APA91bEkZOQLt1jESKmLwkDHD1gu7s-VJ8ThRy8JsHFhpgk3RbfwooiDnyHyhYpdWkylqLyeEHD_tAkoQvm5EyYVE3AumkF_cQwD027M_rTSTQsIpGySbDbY2N9S5OgKUAa2ADRS-GPH\",\n" +
-            "  \"notification\": {\n" +
-            "     \"title\": \"Nuevo Contenedor\",\n" +
-            "     \"body\": \" ID "+ usuario.getId()+" Puertos {SQL: "+usuario.getPuertoSQL()+", PHP: "+usuario.getPuertoPHP()+" \"\n" +
-            "  }}");
-            httppost.addHeader("Authotization", "key=<your legacy server key>");
+            // Headers
+            httppost.addHeader("Authorization", "key=<your legacy server key>");
             httppost.addHeader("Content-Type", "application/json");
-            httppost.setEntity(jsonPush);
-            CloseableHttpResponse respuesta = httpclient.execute(httppost);
+
+            JsonObject mensaje = new JsonObject();
+            mensaje.addProperty("to", "c8Yt-yQouZI:APA91bEkZOQLt1jESKmLwkDHD1gu7s-VJ8ThRy8JsHFhpgk3RbfwooiDnyHyhYpdWkylqLyeEHD_tAkoQvm5EyYVE3AumkF_cQwD027M_rTSTQsIpGySbDbY2N9S5OgKUAa2ADRS-GPH");
+            mensaje.addProperty("priority", "high");
+
+            JsonObject notificacion = new JsonObject();
+            notificacion.addProperty("title", "Nuevo servidor");
+            notificacion.addProperty("body", usuario.toString());
+
+            mensaje.add("notification", notificacion);
+            
+            httppost.setEntity(new StringEntity(mensaje.toString(), "UTF-8"));
+            
+            HttpResponse respuesta = httpclient.execute(httppost);
             System.out.println(respuesta.getStatusLine());
-            respuesta.close();
 
         } catch (Exception e) {
             String json = new Gson().toJson("ERROR");
@@ -119,3 +127,20 @@ public class ServidorIniciar extends HttpServlet {
     }// </editor-fold>
 
 }
+
+/*
+            Body
+            String body2 = "{\n"
+                    + "     \"notification\": {\n"
+                    + "         \"title\": \"Nuevo servidor\",\n"
+                    + "         \"body\": \"" + usuario.toString() + "\",\n"
+                    + "         \"sound\": \"default\",\n"
+                    + "         \"click_action\": \"FCM_PLUGIN_ACTIVITY\",\n"
+                    + "         \"icon\": \"fcm_push_icon\"\n"
+                    + "     },\n"
+                    + "     \"data\": {\n"
+                    + "         \"hello\": \"This is a Firebase Cloud Messagin  hbhj g Device Gr new v Message!\",\n"
+                    + "     },\n"
+                    + "     \"to\": \"c8Yt-yQouZI:APA91bEkZOQLt1jESKmLwkDHD1gu7s-VJ8ThRy8JsHFhpgk3RbfwooiDnyHyhYpdWkylqLyeEHD_tAkoQvm5EyYVE3AumkF_cQwD027M_rTSTQsIpGySbDbY2N9S5OgKUAa2ADRS-GPH\"\n"
+                    + "   }";
+            */
