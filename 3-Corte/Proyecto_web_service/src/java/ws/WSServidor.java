@@ -2,8 +2,6 @@ package ws;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.jws.Oneway;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
