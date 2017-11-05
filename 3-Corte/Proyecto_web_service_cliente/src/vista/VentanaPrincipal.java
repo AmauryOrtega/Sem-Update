@@ -70,7 +70,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
-        try {
+        try {      
             // Consumiendo web service
             String json = iniciarServidor();
             user = new Gson().fromJson(json, Pc.class);
