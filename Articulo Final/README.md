@@ -6,4 +6,5 @@
 - [JSON](../2-Corte/Informe-JSON.pdf)
 - [Web-Service](../3-Corte/Informe-WebService.pdf)
 - [JSON con Firebase](../3-Corte/Informe-FCM.pdf)
-- **POR HACER** [EXTRA RESTful](../Extra/Informe-RESTful.pdf)
+
+## [Articulo comparativo](Articulo-Final.pdf)
